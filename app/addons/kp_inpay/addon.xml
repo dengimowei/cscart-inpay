@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<addon scheme="3.0" edition_type="ROOT,ULT:VENDOR">
+    <id>cscart_inpay</id>
+    <version>17.02.18</version>
+    <default_language>en</default_language>
+    <priority>1200</priority>
+    <status>active</status>
+    <name>Bitcoin (InPay) Payment Gateway</name>
+    <supplier>InPay.pl</supplier>
+    <supplier_link>https://inpay.pl</supplier_link>
+    <author>
+        <name>InPay</name>
+        <url>https://inpay.pl</url>
+        <email>info@inpay.pl</email>
+    </author>
+     <language_variables>
+        <item lang="en" id="apikey">Public Key</item>
+        <item lang="en" id="secretapikey">Private Key</item>
+        <item lang="en" id="mode">Mode</item>
+     </language_variables>
+    <queries>
+        <item for="install">
+            INSERT INTO cscart_payment_processors (`processor`, `processor_script`, `processor_template`, `admin_template`, `callback`, `type`, addon)
+            VALUES
+            ('inpay', 'inpay.php', 'views/orders/components/payments/cc_outside.tpl', 'inpay.tpl', 'N', 'P', 'inpay')
+        </item>
+        <item for="uninstall">
+            DELETE FROM ?:payment_processors WHERE processor = "inpay";
+        </item>
+    </queries>
+
+</addon>
